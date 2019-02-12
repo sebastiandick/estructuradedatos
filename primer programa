@@ -1,0 +1,21 @@
+//librerias
+#include "stdafx.h"
+#include "conio.h"
+#include "iostream"
+using namespace std;
+//prototipos
+//programa
+void main()
+{//tipos de datos
+	float p, pf;
+   do{
+   cout<<"ingrese el costo: ";
+       cin>>p;
+   }while(p<=0);
+
+   pf=p*0.13+p;//acumulador
+
+   cout<<"el precio final es: "<<pf;
+   getch();
+
+}
