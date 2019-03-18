@@ -1,0 +1,89 @@
+#pragma once
+class Vector
+{
+private: 
+	int A[100],B[100],C[100],n,m;
+public:
+	Vector(void);
+	~Vector(void);
+	void cargar1();
+	void cargar2();
+	void mezclar();
+	void mostrar();
+};
+
+
+#include "StdAfx.h"
+#include "Vector.h"
+#include <iostream>
+using namespace std;
+
+Vector::Vector(void)
+{
+}
+
+
+Vector::~Vector(void)
+{
+}
+
+void Vector::cargar1()
+{
+	cout<<"ingrese tamaño del primer vector: "<<endl;
+	cin>>n;
+
+	for(int a=0; a<n; a++)
+	{
+		cout<<"A["<<a+1<<"]=";
+		cin>>A[a];
+	}
+}
+
+void Vector::cargar2()
+{
+	cout<<"ingrese tamaño del segundo vector: "<<endl;
+	cin>>m;
+
+	for(int a=0; a<m; a++)
+	{
+		cout<<"B["<<a+1<<"]=";
+		cin>>B[a];
+	}
+}
+
+void Vector::mezclar()
+{
+	int cont=0;
+	for(int a=0; a<n+m; a++)
+	{
+			C[cont]=A[a];
+			cont++;
+			C[cont]=B[a];
+			cont++;
+	}
+}
+
+void Vector::mostrar()
+{
+	for (int a=0; a<n+m; a++)
+	{
+	   cout<<C[a];
+	}
+}
+
+
+#include "stdafx.h"
+#include "Vector.h"
+#include <iostream>
+#include "conio.h"
+using namespace std;
+
+void main()
+{
+	Vector v;
+	v.cargar1();
+	v.cargar2();
+	v.mezclar();
+	v.mostrar();
+	getch();
+}
