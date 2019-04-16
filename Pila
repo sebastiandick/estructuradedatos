@@ -1,0 +1,68 @@
+#pragma once
+#define MAX 100
+class Pila
+{
+private: 
+	int V[MAX];
+	int tope;
+public:
+	Pila(void);
+	~Pila(void);
+	bool apilar(int elemento);
+	bool desapilar(int &elemento);
+	bool mostrarpila();
+	bool pilavacia();
+};
+
+
+
+
+#include "StdAfx.h"
+#include "Pila.h"
+#include <iostream>
+#define MAX 100
+using namespace std;
+Pila::Pila(void)
+{
+	tope = -1;
+}
+
+
+Pila::~Pila(void)
+{
+}
+bool Pila::apilar(int elemento)
+{
+	if (tope==MAX-1)
+	{
+		cout<<"La pila esta llena"<<endl;
+		return false;
+    }
+	else 
+		{
+			tope++;
+			V[tope]=elemento;
+        }
+	return true;
+}
+bool Pila::desapilar(int &elemento)
+	{
+		if (tope==-1)
+		{
+			cout<<"la fila esta vacia";
+			return false;
+		}
+		else 
+		{
+			elemento=V[tope];
+			tope--;
+		}
+		return true;
+    }  
+bool Pila::mostrarpila(){
+	
+	for(int i = 0; i< tope;i++){
+		cout << V[i] << endl;
+
+	} 
+}
