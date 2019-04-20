@@ -1,0 +1,83 @@
+// Herencia_Formas.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "Rectangulo.h"
+#include <iostream>
+#include "conio.h"
+using namespace std;
+
+void main()
+{
+	int b,h;
+	Rectangulo r1;
+	cout<<"Ingrese base"<<endl;
+	cin>>b;
+	r1.obtenerBase(b);
+	cout<<"Ingrese altura"<<endl;
+	cin>>h;
+	r1.obtenerAltura(h);
+	cout<<"El area es: "<<r1.Area();
+
+getch();
+}
+#pragma once
+class Shape
+{
+protected:
+	int altura;
+	int base;
+public:
+	Shape(void);
+	~Shape(void);
+	void obtenerAltura(int h);
+	void obtenerBase(int b);
+};
+#include "StdAfx.h"
+#include "Shape.h"
+
+
+Shape::Shape(void)
+{
+}
+
+
+Shape::~Shape(void)
+{
+}
+
+void Shape::obtenerAltura(int h)
+{
+	altura=h;
+}
+
+void Shape::obtenerBase(int b)
+{
+	base=b;
+}	
+#pragma once
+#include "Shape.h"
+class Rectangulo: public Shape
+{
+public:
+	Rectangulo(void);
+	~Rectangulo(void);
+	int Area();
+};
+#include "StdAfx.h"
+#include "Rectangulo.h"
+
+
+Rectangulo::Rectangulo(void)
+{
+}
+
+
+Rectangulo::~Rectangulo(void)
+{
+}
+
+int Rectangulo::Area()
+{
+	return (base*altura);
+}
