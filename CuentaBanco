@@ -1,0 +1,143 @@
+// Banco.Herencia.cpp : Defines the entry point for the console application.
+//
+#include &quot;stdafx.h&quot;
+#include &quot;Cuenta.h&quot;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &quot;conio.h&quot;
+using namespace std;
+void main ()
+{ Cuenta C1;
+C1.AsignarNombre(&quot;Sebastian&quot;);
+C1.AsignarCuenta(&quot;8976570&quot;);
+C1.AsignarTipoDeInteres(2.5);
+C1.Ingreso(30000);
+C1.Reintegro(10000);
+cout&lt;&lt;&quot;\nNombre : &quot;&lt;&lt;C1.ObtenerNombre()&lt;&lt;endl;
+cout&lt;&lt;&quot;Nro de cuenta : &quot;&lt;&lt;C1.ObtenerCuenta()&lt;&lt;endl;
+cout&lt;&lt;&quot;Saldo : &quot;&lt;&lt;C1.Estado()&lt;&lt;endl;
+cout&lt;&lt;&quot;tipo de interes : &quot;&lt;&lt;C1.ObtenerTipoDeInteres()&lt;&lt;endl;
+getch();
+}
+
+#pragma once
+#include &lt;string&gt;
+using namespace std;
+class Cuenta
+{
+protected:
+double TipoDeInteres, saldo;
+string cuenta, nombre;
+public:
+Cuenta();
+Cuenta (string nom,string cuen, double sal, double tipo);
+~Cuenta();
+void AsignarNombre (string nom);
+string ObtenerNombre();
+void AsignarCuenta (string cue);
+string ObtenerCuenta ();
+void AsignarTipoDeInteres(double tipo);
+double ObtenerTipoDeInteres();
+void Reintegro(double cantidad);
+void Ingreso(double cantidad);
+double Estado();
+};
+
+#include &quot;StdAfx.h&quot;
+
+#include &quot;Cuenta.h&quot;
+#include &lt;string&gt;
+#include &lt;iostream&gt;
+using namespace std;
+Cuenta::Cuenta()
+{ saldo = 0 ;
+TipoDeInteres = 0.0;
+}
+Cuenta::Cuenta(string nom,string cuen, double sal, double tipo)
+{ AsignarNombre(nom);
+AsignarCuenta(cuen);
+saldo = sal;
+TipoDeInteres = tipo;
+}
+Cuenta::~Cuenta()
+{
+}
+void Cuenta::AsignarNombre(string nom)
+{ if (nom.length()==0)
+{ cout&lt;&lt;&quot;Error : cadena vacia &quot;&lt;&lt;endl;
+return ;
+}
+nombre = nom;
+}
+string Cuenta::ObtenerNombre()
+{ return nombre ;}
+void Cuenta::AsignarCuenta(string cuen)
+{ if (cuen.length()==0)
+{ cout&lt;&lt;&quot;Error : cadena vacia &quot;&lt;&lt;endl;
+return ;
+}
+cuenta = cuen ;
+}
+string Cuenta::ObtenerCuenta()
+{ return cuenta ;}
+void Cuenta::AsignarTipoDeInteres(double tipo)
+{ if (tipo&lt;0)
+{cout&lt;&lt;&quot;Error : tipo de interes negativo &quot;;
+return ;
+}
+TipoDeInteres = tipo;
+}
+double Cuenta::ObtenerTipoDeInteres()
+{ return TipoDeInteres ;}
+void Cuenta::Reintegro(double cantidad)
+{ if (saldo - cantidad &lt; 0 )
+{ cout&lt;&lt;&quot;Error: no dispone de saldo &quot;&lt;&lt;endl;
+return;
+}
+saldo = saldo - cantidad ;//
+}
+
+void Cuenta::Ingreso(double cantidad)
+{ if (cantidad&lt;0)
+{ cout&lt;&lt;&quot;Error cantidad negativa&quot;&lt;&lt;endl;
+return ;
+}
+saldo = saldo + cantidad ;
+}
+double Cuenta::Estado()
+{ return saldo;}
+#pragma once
+#include &quot;Cuenta.h&quot;
+class CuentaAhorro : public Cuenta
+{
+private:
+double CuotaMantenimiento ;
+public:
+CuentaAhorro(string nom,string cuen, double sal, double tipo, double mant);
+~CuentaAhorro(void);
+void AsignarCuotaMantenimiento(double cantidad);
+double ObtenerCuotaMantenimiento();
+void Reintegro(double cantidad);
+};
+#include &quot;StdAfx.h&quot;
+#include &quot;CuentaAhorro.h&quot;
+CuentaAhorro::CuentaAhorro(string nom,string cuen, double sal, double tipo, double
+mant)
+{ AsignarNombre(nom);
+AsignarCuenta(cuen);
+saldo = sal;
+TipoDeInteres = tipo;
+AsignarCuotaMantenimiento(mant);
+}
+CuentaAhorro::~CuentaAhorro(void)
+{
+}
+void CuentaAhorro::AsignarCuotaMantenimiento(double cantidad)
+{ if (cantidad &lt; 0)
+{ cout&lt;&lt;&quot;Error : cuota de mantenimiento negativa &quot;;
+return ;
+}
+CuotaMantenimiento = cantidad ;
+}
+double CuentaAhorro::ObtenerCuotaMantenimiento()
+{return CuotaMantenimiento ; }
