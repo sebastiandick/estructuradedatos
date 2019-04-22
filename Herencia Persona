@@ -1,0 +1,165 @@
+// Ejemplo1.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "Administrador.h"
+#include "Docente.h"
+#include <iostream>
+#include <string>
+#include "conio.h"
+using namespace std;
+
+void main()
+{
+    string n;
+    int c,s,I,h;
+
+    cout<<"ingrese el nombre del Docente: "<<endl;
+    getline(cin,n);
+
+    cout<<"ingrese el CI: "<<endl;
+    cin>> c;
+
+    cout<<"ingrese el ID: "<<endl;
+    cin>>I;
+
+    cout<<"ingrese el sueldo: "<<endl;
+    cin>>s;
+
+    cout<<"ingrese horas trabajadas: "<<endl;
+    cin>>h;
+
+    Administrador A1;
+	A1.setNombre(n);
+    A1.getsueldo(s);
+	A1.setCI(c);
+	A1.setID(I);
+
+
+    Docente D1;
+	D1.setNombre(n);
+	D1.sethora(h);
+	D1.setCI(c);
+	D1.setID(I);
+	
+
+   
+    getch();
+}
+
+
+#pragma once
+#include <iostream>
+using namespace std;
+class Persona
+{
+protected:
+    int CI, ID;
+    string Nombre;
+public:
+    Persona(void);
+    ~Persona(void);
+
+    void setCI(int n);
+    void setNombre(string N);
+    void setID(int I);
+};
+
+
+#include "StdAfx.h"
+#include "Persona.h"
+#include <string>
+using namespace std;
+
+Persona::Persona(void)
+{
+}
+
+
+Persona::~Persona(void)
+{
+}
+
+void Persona::setCI(int n)
+{
+    CI=n;
+	cout<<"el CI es: "<<CI<<endl;
+}
+
+void Persona::setNombre(string N)
+{
+    Nombre=N;
+	cout<<"el nombre es: "<<Nombre<<endl;
+}
+
+void Persona::setID(int I)
+{
+    ID=I;
+	cout<<"el ID es: "<<ID<<endl;
+}
+
+
+#pragma once
+#include "Persona.h"
+#include <iostream>
+using namespace std;
+class Docente: public Persona
+{
+private:
+    int hora;
+public:
+    Docente(void);
+    ~Docente(void);
+
+    void sethora(int _hora)
+    {
+        hora=_hora;
+        cout<<"Las horas son: "<<hora<<endl;
+    }
+};
+
+
+#include "StdAfx.h"
+#include "Docente.h"
+
+
+Docente::Docente(void)
+{
+}
+
+
+Docente::~Docente(void)
+{
+}
+
+
+#pragma once
+#include "Persona.h"
+class Administrador: public Persona
+{
+private:
+    int sueldo;
+public:
+    Administrador(void);
+    ~Administrador(void);
+
+    void getsueldo(int _sueldo)
+    {
+        sueldo=_sueldo;
+        cout<<"El sueldo es: "<<sueldo<<endl;
+    }
+};
+
+
+#include "StdAfx.h"
+#include "Administrador.h"
+
+
+Administrador::Administrador(void)
+{
+}
+
+
+Administrador::~Administrador(void)
+{
+}
