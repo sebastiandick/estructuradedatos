@@ -1,0 +1,103 @@
+#include "stdafx.h"
+#include "Pila.h"
+#include <iostream>
+#include "conio.h"
+using namespace std;
+
+void main()
+{int n,a=0,n1,b=0,elemento;
+Pila p;
+
+cout<<"ingrese la cantidad de elementos: "<<endl;
+cin>>n;
+
+do{
+    cout<<"ingrese el elemento: "<<endl;
+    cin>>elemento;
+    p.apilar(elemento);
+    a++;
+  }while(a<n);
+
+cout<<"la pila es: "<<endl;
+p.mostrarpila();
+
+cout<<"ingrese la cantidad de elementos para desapilar: "<<endl;
+cin>>n1;
+
+do{
+    p.desapilar(elemento);
+    b++;
+  }while(b<n1);
+
+cout<<"la pila es: "<<endl;
+p.mostrarpila();
+
+   getch();
+}
+
+
+#include "StdAfx.h"
+#include "Pila.h"
+#include <iostream>
+using namespace std;
+
+Pila::Pila(void)
+{
+    tope=-1;
+}
+
+
+Pila::~Pila(void)
+{
+}
+
+bool Pila::apilar(int elemento)
+{
+    if(tope==10-1)
+    {
+        cout<<"la pila esta llena!"<<endl;
+        cout<<"elemento "<<elemento<<"no fue ingresado "<<endl;
+        return false;
+    }else{
+           tope++;
+           P[tope]=elemento;
+           return true;
+         }
+}
+
+bool Pila::desapilar(int &elemento)
+{
+    if(tope==-1)
+    {
+        cout<<"la pila esta vacia!"<<endl;
+        return false;
+    }else{
+            elemento=P[tope];
+            tope--;
+         }
+    return true;
+}
+
+bool Pila::mostrarpila()
+{
+    cout<<endl;
+    for(int a=0; a<=tope; a++)
+    {
+        cout<<P[tope-a]<<endl;
+    }
+    return true;
+}
+
+
+#pragma once
+class Pila
+{
+private:
+    int P[10],tope;
+public:
+    Pila(void);
+    ~Pila(void);
+    bool apilar(int elemento);
+    bool desapilar(int &elemento);
+    bool mostrarpila();
+}
